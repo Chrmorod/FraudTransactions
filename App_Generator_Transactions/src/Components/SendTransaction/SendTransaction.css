@@ -1,0 +1,105 @@
+.section-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Añadido para centrar horizontalmente */
+    padding: 20px;
+    /*background-color: #f4f4f4;*/
+    margin: 0;
+    /*min-height: 100vh;*/
+    text-align: center;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent; /* Altura de la flecha */
+    border-bottom: 20px solid transparent; /* Altura de la flecha */
+    border-left: 20px solid #000000; /* Color de la flecha */
+  }
+
+.title-datetime-container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.card-container {
+    flex: 0 0 auto;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s;
+    margin: 0 10px 20px 10px;
+    overflow: hidden;
+}
+
+.card-container:hover {
+    transform: scale(1.05);
+}
+
+.sender-card {
+    background-color: #a3c6e3;
+}
+
+.amount-type-card {
+    background-color: #c4f1c4;
+}
+
+.recipient-card {
+    background-color: #e4d8f0;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input, select {
+    width: calc(100% - 16px);
+    padding: 10px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #6cb4ee;
+}
+.section-btn {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-general {
+    margin-bottom: 10px; /* Ajusta el espacio inferior del botón según tus necesidades */
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-general:hover {
+    background-color: #2980b9;
+}

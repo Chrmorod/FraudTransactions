@@ -1,0 +1,14 @@
+form {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  button.btn-create,
+  button.btn-send {
+    padding: 15px 20px; 
+    margin: 0 10px; 
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    background: #007bff;
+    color: #fff;
+  }
