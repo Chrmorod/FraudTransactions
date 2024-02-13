@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.transactions
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, data, data-mongodb, gradle, http-client-test, java, java-application, junit, logback, micronaut-aot, micronaut-build, micronaut-http-validation, mongo-sync, mongo-reactive, netty-server, properties, readme, serialization-jackson, shade, test-resources]
