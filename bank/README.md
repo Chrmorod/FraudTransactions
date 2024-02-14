@@ -1,24 +1,24 @@
-## Micronaut 4.2.3 Documentation
+## Micronaut 4.3.1 Documentation
 
-- [User Guide](https://docs.micronaut.io/4.2.3/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.2.3/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.2.3/guide/configurationreference.html)
+- [User Guide](https://docs.micronaut.io/4.3.1/guide/index.html)
+- [API Reference](https://docs.micronaut.io/4.3.1/api/index.html)
+- [Configuration Reference](https://docs.micronaut.io/4.3.1/guide/configurationreference.html)
 - [Micronaut Guides](https://guides.micronaut.io/index.html)
 ---
 
+- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
 - [Micronaut Gradle Plugin documentation](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/)
 - [GraalVM Gradle Plugin documentation](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html)
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature mongo-sync documentation
+## Feature data-mongodb documentation
 
-- [Micronaut MongoDB Synchronous Driver documentation](https://micronaut-projects.github.io/micronaut-mongodb/latest/guide/index.html)
+- [Micronaut Data MongoDB documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/#mongo)
 
 - [https://docs.mongodb.com](https://docs.mongodb.com)
 
 
-## Feature data-mongodb documentation
+## Feature mongo-sync documentation
 
-- [Micronaut Data MongoDB documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/#mongo)
+- [Micronaut MongoDB Synchronous Driver documentation](https://micronaut-projects.github.io/micronaut-mongodb/latest/guide/index.html)
 
 - [https://docs.mongodb.com](https://docs.mongodb.com)
 

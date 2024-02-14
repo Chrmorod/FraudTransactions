@@ -22,7 +22,8 @@ public class Transaction {
     @BsonProperty("amount")
     private final Double amount;
 
-    @Nullable
+    @NonNull
+    @NotBlank
     @BsonProperty("nameOrig")
     private final String nameOrig;
 
@@ -36,7 +37,8 @@ public class Transaction {
     @BsonProperty("newbalanceOrig")
     private final Double newbalanceOrig;
 
-    @Nullable
+    @NonNull
+    @NotBlank
     @BsonProperty("nameDest")
     private final String nameDest;
 
@@ -60,16 +62,16 @@ public class Transaction {
     @Creator
     @BsonCreator
     public Transaction(
-                       @Nullable @BsonProperty("step") Integer step,
-                       @Nullable @BsonProperty("type") String type,
-                       @NonNull  @BsonProperty("amount") Double amount,
-                       @Nullable @BsonProperty("nameOrig") String nameOrig,
-                       @NonNull  @BsonProperty("oldbalanceOrg") Double oldbalanceOrg,
-                       @NonNull  @BsonProperty("newbalanceOrig") Double newbalanceOrig,
-                       @Nullable @BsonProperty("nameDest") String nameDest,
-                       @NonNull  @BsonProperty("oldbalanceDest") Double oldbalanceDest,
-                       @NonNull @BsonProperty("newbalanceDest") Double newbalanceDest,
-                       @Nullable @BsonProperty("isFraud") Integer isFraud)
+            @Nullable @BsonProperty("step") Integer step,
+            @NonNull @NotBlank @BsonProperty("type") String type,
+            @NonNull @NotBlank @BsonProperty("amount") Double amount,
+            @NonNull @NotBlank @BsonProperty("nameOrig") String nameOrig,
+            @NonNull @NotBlank @BsonProperty("oldbalanceOrg") Double oldbalanceOrg,
+            @NonNull @NotBlank @BsonProperty("newbalanceOrig") Double newbalanceOrig,
+            @NonNull @NotBlank @BsonProperty("nameDest") String nameDest,
+            @NonNull @NotBlank @BsonProperty("oldbalanceDest") Double oldbalanceDest,
+            @NonNull @NotBlank @BsonProperty("newbalanceDest") Double newbalanceDest,
+            @NonNull @NotBlank @BsonProperty("isFraud") Integer isFraud)
 
     {
         this.step = step;
@@ -87,37 +89,46 @@ public class Transaction {
     public Integer getStep() {
         return step;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public String getType() {return type;}
-    @Nullable
+    @NonNull
+    @NotBlank
     public Double getAmount() {
         return amount;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public String getNameOrig() {
         return nameOrig;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public Double getOldbalanceOrg() {
         return oldbalanceOrg;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public Double getNewbalanceOrig() {
         return newbalanceOrig;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public String getNameDest() {
         return nameDest;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public Double getOldbalanceDest() {
         return oldbalanceDest;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public Double getNewbalanceDest() {
         return newbalanceDest;
     }
-    @Nullable
+    @NonNull
+    @NotBlank
     public Integer getIsFraud() {
         return isFraud;
     }

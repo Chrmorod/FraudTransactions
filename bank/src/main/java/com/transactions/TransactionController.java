@@ -1,12 +1,15 @@
 package com.transactions;
 
 import io.micronaut.core.annotation.NonNull;
-import io.micronaut.http.annotation.*;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Status;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import java.util.stream.Stream;
+import java.util.List;
 import static io.micronaut.http.HttpStatus.CREATED;
 
 @Controller("/transactions")
@@ -20,8 +23,8 @@ class TransactionController {
     }
 
     @Get
-    Stream<Transaction> list() {
-        return transactionService.stream();
+    List<Transaction> list() {
+        return transactionService.list();
     }
 
     @Post
