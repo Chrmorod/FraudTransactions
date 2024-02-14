@@ -1,1 +1,0 @@
-{"groups":[{"name":"db","type":"com.transactions.MongoDbConfiguration"}],"properties":[{"name":"db.name","type":"java.lang.String","sourceType":"com.transactions.MongoDbConfiguration"},{"name":"db.collection","type":"java.lang.String","sourceType":"com.transactions.MongoDbConfiguration"}]}
