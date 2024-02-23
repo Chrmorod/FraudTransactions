@@ -1,0 +1,31 @@
+# server properties
+server:
+  servlet:
+    context-path: /bank
+
+# spring properties
+spring:
+  cloud:
+    gcp:
+      project-id: transactions-project
+      pubsub:
+        emulator-host: localhost:8085
+      firestore:
+        emulator:
+          enabled: true
+        host-port: localhost:9080
+        project-id: transactions-project
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/
+      host: localhost
+      port: 27017
+      database: bank
+      collection: transactions
+# custom properties
+config:
+  pubsub:
+    test-subscription: test-sub
+  storage:
+    emulator-host: localhost:9199 # gcp starter does not have this property
+    default-bucket: transactions-project.appspot.com
