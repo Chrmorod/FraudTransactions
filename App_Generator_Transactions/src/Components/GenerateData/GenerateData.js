@@ -1,5 +1,7 @@
 import React from "react";
 import { Home } from "../Home/Home";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import './GenerateData.css';
 class HomeView extends React.Component{
     render(){
@@ -14,15 +16,22 @@ export class GenerateData extends React.Component {
         this.state = {
             generate: "",
             dataForm: [],
-            home: false
+            home: false,
+            isPlaying: false,
+            isStopped: true,
+            activeButton: null
         };
+        this.play = this.play.bind(this);
+        this.stop = this.stop.bind(this);
     }
     setGenerate = (generate) => {
         this.setState({ generate: generate });
-    };
-      
-    handleGenerate = async (event) => {
-        event.preventDefault();
+    };  
+    //handleGenerate = async (event) => {
+    //    event.preventDefault();
+    //<button className="btn-general" type="submit" onClick={this.handleGenerate}>Generate</button>
+    async play() {
+        this.setState({ activeButton: 'play', isPlaying: true, isStopped: false });
         try {
             let TRX_API_URL = this.state.generate
             const response = await fetch(TRX_API_URL, {
@@ -74,8 +83,10 @@ export class GenerateData extends React.Component {
         } catch (error) {
             console.error('Error de red:', error);
         }
+        this.setState({ isPlaying: false, isStopped: true });
     };
     setgoback = (setgoback) => {this.setState({home:setgoback})}
+    stop() {this.setState({ activeButton: 'stop', isPlaying: false, isStopped: true });}
     render(){
         const { dataForm } = this.state;
         return(
@@ -88,7 +99,8 @@ export class GenerateData extends React.Component {
                     <button className = "btn-back" onClick={this.setgoback}>Back</button>
                     <form>
                         <input className= "input-url" type="text" autoFocus required value={this.state.generate} onChange={(e) => this.setGenerate(e.target.value)} />
-                        <button className="btn-general" type="submit" onClick={this.handleGenerate}>Generate</button>
+                        <button className={`btn-playButton${this.state.activeButton === 'play' ? ' active' : ''}`} onClick={this.play} disabled={!this.state.isStopped}><FontAwesomeIcon icon={faPlay} /></button>
+                        <button className={`btn-stopButton${this.state.activeButton === 'stop' ? ' active' : ''}`} onClick={this.stop} disabled={!this.state.isPlaying}><FontAwesomeIcon icon={faStop} /></button>
                     </form>
                     </>
                 )

@@ -98,4 +98,20 @@ button.btn-back {
     background: #007bff;
     color: #fff;
   } 
-  
+
+button.btn-playButton {
+    background: #00ff6a;
+    color: white;
+    border: none;
+    margin: 0.2em;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+button.btn-stopButton {
+    background: #9b0606;
+    color: white;
+    border: none;
+    margin: 0.2em;
+    padding: 1em;
+    border-radius: 0.5em;
+}
