@@ -12,12 +12,12 @@ spring:
         emulator-host: localhost:8085
       firestore:
         emulator:
-          enabled: true
-        host-port: localhost:9080
-        project-id: transactions-project
+          enabled: false #if true --activate emulator
+        host-port: ${host.port.firestore} #localhost:9080
+        project-id: ${project.id.gcloud} #transactions-project
   data:
     mongodb:
-      uri: mongodb://localhost:27017/
+      uri: ${spring.data.mongodb.uri}
       host: localhost
       port: 27017
       database: bank
@@ -28,4 +28,4 @@ config:
     test-subscription: test-sub
   storage:
     emulator-host: localhost:9199 # gcp starter does not have this property
-    default-bucket: transactions-project.appspot.com
+    default-bucket: transactions-emulator.chmoro.com
