@@ -57,9 +57,9 @@ label {
 }
 
 input, select {
-    width: calc(100% - 16px);
-    padding: 10px;
-    margin-bottom: 12px;
+    width: calc(75% - 1em);
+    padding: 1em;
+    margin-bottom: 1.5em;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -69,6 +69,7 @@ input, select {
 input:focus {
     outline: none;
     border-color: #6cb4ee;
+    color:#2980b9
 }
 .section-btn {
     text-align: center;
@@ -77,8 +78,6 @@ input:focus {
 }
 .btn-general {
     margin-bottom: 10px;
-    border: 1px solid #007bff;
-    background: #007bff;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -90,22 +89,34 @@ input:focus {
 .btn-general:hover {
     background-color: #2980b9;
 }
+.btn-back:hover{
+    background-color: #989898;
+    color: white;
+    cursor: pointer;
+}
 button.btn-back {
-    padding: 15px 20px; 
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     margin: 0 10px; 
     border-radius: 5px;
-    border: 1px solid #007bff;
-    background: #007bff;
-    color: #fff;
-  } 
-
+    border: none;
+    background-color: #fff;
+} 
+button.btn-stopButton:hover,
+button.btn-playButton:hover {
+   background-color: #989898;
+}
 button.btn-playButton {
     background: #00ff6a;
     color: white;
     border: none;
     margin: 0.2em;
     padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     border-radius: 0.5em;
+    cursor: pointer;
 }
 button.btn-stopButton {
     background: #9b0606;
@@ -113,5 +124,16 @@ button.btn-stopButton {
     border: none;
     margin: 0.2em;
     padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     border-radius: 0.5em;
+    cursor: pointer;
+}
+.url-input{
+    display: flex;
+}
+.lbl-url{
+    padding-top: 0.5em;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
 }

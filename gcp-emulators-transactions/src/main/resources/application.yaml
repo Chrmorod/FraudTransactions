@@ -3,16 +3,14 @@ server:
   servlet:
     context-path: /bank
 
-# spring properties
+# spring && mongodb properties
 spring:
   cloud:
     gcp:
       project-id: transactions-project
-      pubsub:
-        emulator-host: localhost:8085
       firestore:
         emulator:
-          enabled: false #if true --activate emulator
+          enabled: ${MODE_EMULATOR} #if true --activate emulator ${mode.emulator}
         host-port: ${host.port.firestore} #localhost:9080
         project-id: ${project.id.gcloud} #transactions-project
   data:
@@ -22,10 +20,3 @@ spring:
       port: 27017
       database: bank
       collection: transactions
-# custom properties
-config:
-  pubsub:
-    test-subscription: test-sub
-  storage:
-    emulator-host: localhost:9199 # gcp starter does not have this property
-    default-bucket: transactions-emulator.chmoro.com

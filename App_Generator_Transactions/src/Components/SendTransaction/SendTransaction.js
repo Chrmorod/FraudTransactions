@@ -1,7 +1,9 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {Home} from '../Home/Home'
 import './SendTransaction.css';
-const TRX_API_URL = "http://localhost:8080/transactions";
+const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
 class HomeView extends React.Component{
   render(){
     return (
@@ -51,7 +53,7 @@ export class SendTransaction extends React.Component {
                 "isFraud": 0
               }
           };
-          const response = await fetch(TRX_API_URL, {
+          const response = await fetch(TRX_API_URL_POST, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -76,12 +78,8 @@ export class SendTransaction extends React.Component {
               <HomeView/>
           ):(
             <>
-              <section>
-                <div class="title-datetime-container">
-                  <h1>Create Transactions</h1>
-                  <button className="btn-back" onClick={this.setgoback}>Back</button>
-                </div>
-              </section>
+              <h1>Create Transactions</h1>
+              <button className="btn-back" onClick={this.setgoback}><FontAwesomeIcon icon={faChevronLeft}/></button>
               <section>
                 <form onSubmit={this.handleSubmit} class="section-body">
                 <table>
@@ -116,7 +114,7 @@ export class SendTransaction extends React.Component {
               </section>
               <section>
                   <div className="section-btn">
-                      <button className="btn-general" type="submit" onClick={this.handleSubmit}>Register Transaction</button>
+                      <button className="btn-register" type="submit" onClick={this.handleSubmit}>Register Transaction</button>
                   </div>
               </section>
             </>

@@ -2,7 +2,11 @@ form {
     text-align: center;
     margin-top: 20px;
   }
-
+  .btn-create:hover,
+  .btn-send:hover {
+    background-color: #989898;
+    border: none;
+  }
   button.btn-create,
   button.btn-send {
     padding: 15px 20px; 
@@ -11,4 +15,8 @@ form {
     border: 1px solid #007bff;
     background: #007bff;
     color: #fff;
+    cursor: pointer;
+  }
+  h1{
+    margin-left: 1em;
   }

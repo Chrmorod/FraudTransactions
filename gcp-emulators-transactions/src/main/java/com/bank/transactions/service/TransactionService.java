@@ -34,14 +34,14 @@ public class TransactionService {
 
     return repository
         .findById(id)
-        .map(doc -> new Transaction(doc.getId(), doc.getStep(), doc.getType(),doc.getAmount(),doc.getNameOrig(),doc.getOldBalanceOrg(),doc.getNewBalanceOrig(),doc.getNameDest(),doc.getOldBalanceDest(),doc.getNewBalanceDest(),doc.getIsFraud()))
+        .map(doc -> new Transaction(doc.getId(), doc.getStep(), doc.getType(),doc.getAmount(),doc.getNameOrig(),doc.getOldBalanceOrg(),doc.getNewBalanceOrig(),doc.getNameDest(),doc.getOldBalanceDest(),doc.getNewBalanceDest()))
         .block();
   }
   public Transaction add(Transaction trx) {
 
     TransactionDocument doc =
         Optional.ofNullable(trx)
-            .map(t -> new TransactionDocument(t.getId(),t.getStep(),t.getType(),t.getAmount(),t.getNameOrig(),t.getOldBalanceOrg(),t.getNewBalanceOrig(),t.getNameDest(),t.getOldBalanceDest(),t.getNewBalanceDest(),t.getIsFraud()))
+            .map(t -> new TransactionDocument(t.getId(),t.getStep(),t.getType(),t.getAmount(),t.getNameOrig(),t.getOldBalanceOrg(),t.getNewBalanceOrig(),t.getNameDest(),t.getOldBalanceDest(),t.getNewBalanceDest()))
             .orElseThrow(InvalidInputException::new);
 
     final var id = Objects.requireNonNull(repository.save(doc).block()).getId();
@@ -61,8 +61,7 @@ public class TransactionService {
                     doc.getNewBalanceOrig(),
                     doc.getNameDest(),
                     doc.getOldBalanceDest(),
-                    doc.getNewBalanceDest(),
-                    doc.getIsFraud()
+                    doc.getNewBalanceDest()
             ))
             .collect(Collectors.toList());
   }

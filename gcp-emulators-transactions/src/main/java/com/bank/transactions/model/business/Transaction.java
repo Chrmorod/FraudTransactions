@@ -14,9 +14,8 @@ public class Transaction {
     private String nameDest;
     private Double oldbalanceDest;
     private Double newbalanceDest;
-    private Integer isFraud;
 
-    public Transaction(String id, Integer step, String type , Double amount, String nameOrig, Double oldbalanceOrg, Double newbalanceOrig, String nameDest, Double oldbalanceDest, Double newbalanceDest, Integer isFraud) {
+    public Transaction(String id, Integer step, String type , Double amount, String nameOrig, Double oldbalanceOrg, Double newbalanceOrig, String nameDest, Double oldbalanceDest, Double newbalanceDest) {
         this.id = id;
         this.step = step;
         this.type = type;
@@ -27,7 +26,6 @@ public class Transaction {
         this.nameDest = nameDest;
         this.oldbalanceDest = oldbalanceDest;
         this.newbalanceDest = newbalanceDest;
-        this.isFraud = isFraud;
     }
 
     public String getId() {
@@ -45,7 +43,6 @@ public class Transaction {
     public String getNameDest(){return nameDest;}
     public Double getOldBalanceDest(){return oldbalanceDest;}
     public Double getNewBalanceDest(){return newbalanceDest;}
-    public Integer getIsFraud(){return isFraud;}
     public void setStep(Integer step) {
         this.step = step;
     }
@@ -71,5 +68,4 @@ public class Transaction {
     public void setNewBalanceDest(Double newbalanceDest){
         this.newbalanceDest = newbalanceDest;
     }
-    public void setIsFraud(Integer isFraud){this.isFraud = isFraud;}
 }

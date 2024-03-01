@@ -17,12 +17,11 @@ public class TransactionDocument {
   private String nameDest;
   private Double oldbalanceDest;
   private Double newbalanceDest;
-  private Integer isFraud;
   public TransactionDocument() {
     super();
   }
 
-  public TransactionDocument(String id, Integer step, String type, Double amount, String nameOrig, Double oldbalanceOrg, Double newbalanceOrig, String nameDest, Double oldbalanceDest, Double newbalanceDest, Integer isFraud) {
+  public TransactionDocument(String id, Integer step, String type, Double amount, String nameOrig, Double oldbalanceOrg, Double newbalanceOrig, String nameDest, Double oldbalanceDest, Double newbalanceDest) {
     this.id=id;
     this.step = step;
     this.type = type;
@@ -33,7 +32,6 @@ public class TransactionDocument {
     this.nameDest = nameDest;
     this.oldbalanceDest = oldbalanceDest;
     this.newbalanceDest = newbalanceDest;
-    this.isFraud = isFraud;
   }
   public String getId(){return id;}
   public Integer getStep(){return step;}
@@ -45,6 +43,5 @@ public class TransactionDocument {
   public String getNameDest(){return nameDest;}
   public Double getOldBalanceDest(){return oldbalanceDest;}
   public Double getNewBalanceDest(){return newbalanceDest;}
-  public Integer getIsFraud(){return isFraud;}
 
 }

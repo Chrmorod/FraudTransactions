@@ -1,8 +1,9 @@
 import React from "react";
 import { Home } from "../Home/Home";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faStop, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import './GenerateData.css';
+const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
 class HomeView extends React.Component{
     render(){
       return (
@@ -56,10 +57,9 @@ export class GenerateData extends React.Component {
                             newBalanceOrig: elemento.newBalanceOrig,
                             nameDest: elemento.nameDest,
                             oldBalanceDest: elemento.oldBalanceDest,
-                            newBalanceDest: elemento.newBalanceDest,
-                            isFraud: elemento.isFraud
+                            newBalanceDest: elemento.newBalanceDest
                         };
-                        const POST_URL = 'http://localhost:8080/bank/transactions'; // Cambia esto a la dirección real
+                        const POST_URL = TRX_API_URL_POST;
                         const postResponse = await fetch(POST_URL, {
                             method: 'POST',
                             headers: {
@@ -96,9 +96,12 @@ export class GenerateData extends React.Component {
                 ):(
                     <>
                     <h1>Send Transactions</h1>
-                    <button className = "btn-back" onClick={this.setgoback}>Back</button>
+                    <button className = "btn-back" onClick={this.setgoback}><FontAwesomeIcon icon={faChevronLeft}/></button>
                     <form>
-                        <input className= "input-url" type="text" autoFocus required value={this.state.generate} onChange={(e) => this.setGenerate(e.target.value)} />
+                        <div className="url-input">
+                            <label className="lbl-url">URL Transactions: </label>
+                            <input className= "input-url" type="text" autoFocus required value={this.state.generate} onChange={(e) => this.setGenerate(e.target.value)}/>
+                        </div>
                         <button className={`btn-playButton${this.state.activeButton === 'play' ? ' active' : ''}`} onClick={this.play} disabled={!this.state.isStopped}><FontAwesomeIcon icon={faPlay} /></button>
                         <button className={`btn-stopButton${this.state.activeButton === 'stop' ? ' active' : ''}`} onClick={this.stop} disabled={!this.state.isPlaying}><FontAwesomeIcon icon={faStop} /></button>
                     </form>

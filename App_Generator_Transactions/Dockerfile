@@ -1,14 +1,19 @@
-# Utilizar la imagen base de Java
-FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
-LABEL maintainer "Christian Molina <chmorod>"
-# Establecer el directorio de trabajo dentro del contenedor
+FROM node:14-alpine
+
 WORKDIR /app
 
-# Copiar el JAR de tu aplicación Micronaut al contenedor
-COPY build/libs/*.jar app.jar
+# Copiamos el package.json e instalar dependencias
+COPY package*.json ./
+RUN npm install
 
-# Exponer el puerto en el que se ejecuta tu aplicación Micronaut
-EXPOSE 8080
+# Copiamos el resto de la aplicación
+COPY . .
 
-# Comando para ejecutar tu aplicación Micronaut al iniciar el contenedor
-CMD ["java", "-jar", "app.jar"]
+# Definimos la variable de entorno para la URL de la API
+ENV REACT_APP_API_URL=http://localhost:8080/bank/transactions
+
+# Compilar la aplicación React
+RUN npm run build
+
+EXPOSE 3000
+CMD ["npm", "start"]

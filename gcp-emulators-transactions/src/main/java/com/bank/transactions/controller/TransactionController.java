@@ -22,11 +22,11 @@ public class TransactionController {
   public TransactionController(TransactionService trxsService) {
     this.trxsService = trxsService;
   }
-  @CrossOrigin(origins = "http://localhost:3000") // Permitimos solicitudes desde http://localhost:3000
+  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Permitimos solicitudes desde http://localhost:3000
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Transaction create(@RequestBody Transaction user) {
-    return trxsService.add(user);
+  public Transaction create(@RequestBody Transaction trx) {
+    return trxsService.add(trx);
   }
 
   @GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class TransactionController {
   public List<Transaction> getAllTransactions() {
     return trxsService.getAllTransactions();
   }
-  @CrossOrigin(origins = "http://localhost:3000") // Permitimos solicitudes desde http://localhost:3000
+  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Permitimos solicitudes desde http://localhost:3000
   @GetMapping("/mongodb")
   public List<Transaction> getAllMongoDBTransactions() {
     return trxsService.getAllMongoDBTransactions();
