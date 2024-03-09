@@ -1,6 +1,0 @@
-flask==1.1.4
-google-cloud-storage==1.43.0
-google-cloud-firestore==1.15.0
-google-cloud-error-reporting==1.4.1
-werkzeug==1.0.1
-markupsafe==1.1.1
