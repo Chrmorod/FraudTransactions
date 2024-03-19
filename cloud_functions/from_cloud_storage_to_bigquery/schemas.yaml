@@ -1,0 +1,32 @@
+- name: fraud_data_validate 
+  size: large
+  format: NEWLINE_DELIMITED_JSON
+  columns: []
+  schema: 
+    - name: "oldBalanceOrg"
+      type: "FLOAT64"
+      mode: "NULLABLE"
+    - name: "nameDest"
+      type: "STRING"
+      mode: "NULLABLE"
+    - name: "step"
+      type: "INT64"
+      mode: "NULLABLE"
+    - name: "newBalanceDest"
+      type: "FLOAT64"
+      mode: "NULLABLE"
+    - name: "nameOrig"
+      type: "STRING"
+      mode: "NULLABLE"
+    - name: "type"
+      type: "STRING"
+      mode: "NULLABLE"
+    - name: "amount"
+      type: "FLOAT64"
+      mode: "NULLABLE"
+    - name: "newBalanceOrig"
+      type: "FLOAT64"
+      mode: "NULLABLE"
+    - name: "oldBalanceDest"
+      type: "FLOAT64"
+      mode: "NULLABLE"
