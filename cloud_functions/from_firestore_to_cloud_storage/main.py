@@ -5,21 +5,25 @@ from flask import jsonify
 from google.cloud import firestore
 from google.cloud import storage
 
-db = firestore.Client()
-
 def upload(file_path, content):
     storage_client = storage.Client()
     bucket_name = os.getenv('BUCKET_NAME')
     bucket = storage_client.bucket(bucket_name)
     new_blob = bucket.blob(file_path)
-    content_json = json.dumps(content)
-    new_blob.upload_from_string(content_json) 
+    new_blob.upload_from_string(content) 
 
-def add_trx(request):
-    trx_collection_ref = db.collection('transactions')
-    for doc in trx_collection_ref.stream():
-        trx_id = doc.id
-        transaction = doc.to_dict()
+def format_transaction_data(data):
+    return {
+        field_name: field_value[next(iter(field_value))]
+        for field_name, field_value in data.items()
+    }
+def add_trx(data, context):
+    try:
+        trx_id = context.resource.split('/')[-1]
+        fields_data = data.get('value', {}).get('fields', {})
+        transaction_data = format_transaction_data(fields_data)
+        transaction = json.dumps(transaction_data)
         upload(f"transactions/{datetime.utcnow().date().isoformat()}/trx-{trx_id}.json", transaction)
-    return jsonify({ 'ok': 0 })
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
