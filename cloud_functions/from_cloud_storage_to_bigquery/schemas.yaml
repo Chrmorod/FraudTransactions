@@ -1,8 +1,17 @@
-- name: fraud_data_validate 
+- name: fraud_data_validate
   size: large
   format: NEWLINE_DELIMITED_JSON
   columns: []
-  schema: 
+  schema:
+    - name: "ID"
+      type: "STRING"
+      mode: "REQUIRED"
+    - name: "date"
+      type: "DATE"
+      mode: "REQUIRED"
+    - name: "time"
+      type: "TIME"
+      mode: "REQUIRED" 
     - name: "oldBalanceOrg"
       type: "FLOAT64"
       mode: "NULLABLE"

@@ -13,6 +13,7 @@ with open("./schemas.yaml") as schema_file:
 
 PROJECT_ID = os.getenv('PROJECT_ID')
 BQ_DATASET = os.getenv('DATASET') #bank
+TABLE_PREDICTED = os.getenv('TABLE_PRED')
 CS = storage.Client()
 BQ = bigquery.Client()
 job_config = bigquery.LoadJobConfig()
@@ -36,6 +37,36 @@ def streaming(data,context):
                print("Table Format:",tableFormat)
                if tableFormat == 'NEWLINE_DELIMITED_JSON':
                   _load_table_from_uri(data['bucket'], data['name'], tableSchema, tableName)
+               # Prediction
+               match = re.search(r'trx-(\w+)\.json', filename)
+               id_trx = match.group(1)
+               query = """
+               INSERT INTO `detector-transactions-project.bank.fraud_results`(ID,date,time,isFraud)
+               SELECT id as ID, DATE(CURRENT_DATETIME()) as date, TIME(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), SECOND)) as time, p.label as isFraud
+               FROM ML.PREDICT(MODEL `bank.model_supervised_lreg`,
+               (
+                    SELECT  type,
+                         amount,
+                         nameOrig,
+                         nameDest,
+                         oldBalanceOrg as oldBalanceOrig,
+                         newBalanceOrig,
+                         oldBalanceDest,
+                         newBalanceDest,
+                         if(oldBalanceOrg = 0.0, 1, 0) as origzeroFlag,
+                         if(newBalanceDest = 0.0, 1, 0) as destzeroFlag,
+                         round((newBalanceDest-oldBalanceDest-amount)) as amountError,
+                         ID as id
+                    FROM  `{PROJECT_ID}.{BQ_DATASET}.{TABLE_PREDICTED}`
+                    WHERE ID = '{id_query}'
+               )
+               ), unnest(predicted_isfraud_probs) as p
+               where p.prob > 0.5
+               """.format(id_query=id_trx,PROJECT_ID=PROJECT_ID,BQ_DATASET=BQ_DATASET,TABLE_PREDICTED=TABLE_PREDICTED)
+               query_job = BQ.query(query)
+               #results = query_job.result()
+               #for row in results:
+               #    print("Selected record:", row)
      except Exception:
           print('Error streaming file. Cause: %s' % (traceback.format_exc()))
 
