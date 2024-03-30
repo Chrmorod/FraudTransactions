@@ -37,7 +37,7 @@ export class Home extends React.Component {
                     <GenerateDataView/>
                 ):(
                     <>
-                        <h1>Generator Transactions</h1>
+                        <h1 className="back-title">Generator Transactions</h1>
                         <form>
                             <button className="btn-create" onClick={() => this.setCreateTransaction(!this.state.createTransaction)}>Create</button>
                             <button className="btn-send"  onClick={() => this.setSendTransaction(!this.state.sendTransaction)}>Send</button>

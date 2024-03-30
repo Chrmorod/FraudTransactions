@@ -12,11 +12,19 @@ form {
     padding: 15px 20px; 
     margin: 0 10px; 
     border-radius: 5px;
-    border: 1px solid #007bff;
-    background: #007bff;
+    border: 1px solid #ffc400;
+    background: #ffc400;
     color: #fff;
     cursor: pointer;
   }
   h1{
     margin-left: 1em;
   }
+  .back-title{
+    background-color: black;
+    color: white;
+    width: 100%;
+    padding: 20px; 
+    margin: 0; 
+    box-sizing: border-box; 
+}
