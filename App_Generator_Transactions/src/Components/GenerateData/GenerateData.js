@@ -3,6 +3,7 @@ import { Home } from "../Home/Home";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStop, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import './GenerateData.css';
+import logoTransaction from '../../Images/transaction.svg';
 import AbortController from "abort-controller"
 
 const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
@@ -32,10 +33,12 @@ export class GenerateData extends React.Component {
     setGenerate = (generate) => {
         this.setState({ generate: generate });
     };
+
     playOrStop = async () => {
-        const { isPlayStop, currentPage } = this.state;
-        const signal = this.state.controller.signal;
-        this.setState({isPlayStop: false});
+        const { isPlayStop, currentPage, controller } = this.state;
+        this.setState({ isPlayStop: !isPlayStop }); // Cambiar el estado de isPlayStop
+        const signal = controller.signal;
+
         if (isPlayStop) {
             try {
                 let TRX_API_URL = this.state.generate + `?page=${currentPage}`;
@@ -46,17 +49,13 @@ export class GenerateData extends React.Component {
                     },
                     signal
                 });
+
                 if (response.ok) {
                     const responseData = await response.json();
-                    console.log('Datos extraidos exitosamente',responseData.length);
-                    // Verificamos si la respuesta contiene datos
-                    if (responseData.length > 0) {
-                        if (isPlayStop) {
-                            await this.processData(responseData);
-                        }else{
-                            console.log("Detenemos la solicitud GET")
-                        }
+                    console.log('Datos extraidos exitosamente', responseData.length);
 
+                    if (responseData.length > 0) {
+                        await this.processData(responseData); // Procesar los datos si hay respuesta
                     } else {
                         console.error('La respuesta de la solicitud GET no contiene datos.');
                     }
@@ -66,22 +65,22 @@ export class GenerateData extends React.Component {
             } catch (error) {
                 console.error('Error de red:', error);
             }
-            this.setState({isPlayStop: true });
         } else {
-            console.log('Detención de la petición GET');
-            this.state.controller.abort()
+            console.log('Detención de la petición GET y POST');
+            if (controller.signal.aborted) {
+                controller.abort(); // Abortar tanto la solicitud GET como la POST si se presiona el botón de nuevo
+            }
         }
     };
     
     processData = async (responseData) => {
         try {
             if (Array.isArray(responseData)) {
-                // Iterar sobre cada elemento de la matriz
                 for (let i = 0; i < responseData.length; i++) {
+                    if (this.state.isPlayStop) return; // Verificar si se debe detener el proceso
                     const elemento = responseData[i];
                     try {
                         const postData = {
-                            //id: elemento.id,
                             step: elemento.step,
                             type: elemento.type,
                             amount: elemento.amount,
@@ -118,9 +117,11 @@ export class GenerateData extends React.Component {
             console.error('Error al procesar datos:', error);
         }
     };
+
     setGoBack = () => {
         this.setState({ home: true });
     };
+
     render() {
         return (
             <>
@@ -128,7 +129,10 @@ export class GenerateData extends React.Component {
                     <HomeView />
                 ) : (
                     <>
-                        <h1 className="back-title">Send Transactions</h1>
+                        <div className="myheader">
+                          <img className="logo-style" src={logoTransaction}/>
+                          <h1>Auto-Generate & Send</h1>
+                        </div>
                         <button className="btn-back" onClick={this.setGoBack}><FontAwesomeIcon icon={faChevronLeft} /></button>
                         <div className="url-input">
                             <label className="lbl-url">URL Transactions: </label>

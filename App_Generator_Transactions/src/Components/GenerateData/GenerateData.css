@@ -128,11 +128,19 @@ button.btn-play.pressed {
     margin-right: 1.5em;
     margin-left: 1.5em;
 }
-.back-title{
+.logo-style{
+    background-color: #ffc400;
+    margin-left: 1em;
+    border-radius: 5px;
+  }
+  .myheader h1, .myheader img {
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .myheader{
     background-color: black;
     color: white;
     width: 100%;
-    padding: 20px; 
     margin: 0; 
     box-sizing: border-box; 
-}
+  }

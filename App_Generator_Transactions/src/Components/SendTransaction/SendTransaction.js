@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Home } from '../Home/Home';
 import './SendTransaction.css';
+import logoTransaction from '../../Images/transaction.svg';
 
 const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
 
@@ -83,7 +84,10 @@ export class SendTransaction extends React.Component {
           <HomeView />
         ) : (
           <>
-            <h1 className="back-title">Create Transactions</h1>
+            <div className="myheader">
+              <img className="logo-style" src={logoTransaction}/>
+              <h1>Manual Entry</h1>
+            </div>
             <button className="btn-back" onClick={this.setGoBack}><FontAwesomeIcon icon={faChevronLeft} /></button>
             <section>
               <form onSubmit={this.handleSubmit} className="section-body">
