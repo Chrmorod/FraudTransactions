@@ -38,6 +38,10 @@ To deploy the local react project run
 
 Insert gif or link to demo
 
+## Architecture
+
+![Architecture](https://github.com/Chrmorod/FraudTransactions/blob/main/images/architecture_transactlaunch.svg)
+
 ## Screenshots
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
