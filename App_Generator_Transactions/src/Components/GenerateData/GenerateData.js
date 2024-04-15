@@ -36,7 +36,7 @@ export class GenerateData extends React.Component {
 
     playOrStop = async () => {
         const { isPlayStop, currentPage, controller } = this.state;
-        this.setState({ isPlayStop: !isPlayStop }); // Cambiar el estado de isPlayStop
+        this.setState({ isPlayStop: !isPlayStop }); // Cambiamos el estado de isPlayStop
         const signal = controller.signal;
 
         if (isPlayStop) {
@@ -55,7 +55,7 @@ export class GenerateData extends React.Component {
                     console.log('Datos extraidos exitosamente', responseData.length);
 
                     if (responseData.length > 0) {
-                        await this.processData(responseData); // Procesar los datos si hay respuesta
+                        await this.processData(responseData); // Procesamos los datos si hay respuesta
                     } else {
                         console.error('La respuesta de la solicitud GET no contiene datos.');
                     }
@@ -68,7 +68,7 @@ export class GenerateData extends React.Component {
         } else {
             console.log('Detención de la petición GET y POST');
             if (controller.signal.aborted) {
-                controller.abort(); // Abortar tanto la solicitud GET como la POST si se presiona el botón de nuevo
+                controller.abort(); // Abortamos tanto la solicitud GET como la POST si se presiona el botón de nuevo
             }
         }
     };
@@ -77,7 +77,7 @@ export class GenerateData extends React.Component {
         try {
             if (Array.isArray(responseData)) {
                 for (let i = 0; i < responseData.length; i++) {
-                    if (this.state.isPlayStop) return; // Verificar si se debe detener el proceso
+                    if (this.state.isPlayStop) return; // Verificamos si se debe detener el proceso
                     const elemento = responseData[i];
                     try {
                         const postData = {
