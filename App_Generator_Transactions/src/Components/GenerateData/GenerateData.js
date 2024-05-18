@@ -30,6 +30,23 @@ export class GenerateData extends React.Component {
             controller: new AbortController(),
         };
     }
+
+    getCurrentDateInDays = () => {
+        const today = new Date();
+        const epoch = new Date(1970, 0, 1);
+        const differenceInTime = today.getTime() - epoch.getTime();
+        const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+        return differenceInDays;
+    };
+    getTimeInMicros = () => {
+        const now = new Date();
+        const midnight = new Date(now);
+        midnight.setHours(0, 0, 0, 0); // Establece la hora a medianoche
+        const millisSinceMidnight = now - midnight; // Diferencia en milisegundos
+        const microsSinceMidnight = millisSinceMidnight * 1000; // Convertir a microsegundos
+        return microsSinceMidnight;
+      }
+
     setGenerate = (generate) => {
         this.setState({ generate: generate });
     };
@@ -81,15 +98,18 @@ export class GenerateData extends React.Component {
                     const elemento = responseData[i];
                     try {
                         const postData = {
+                            ID : elemento.id,
+                            date: this.getCurrentDateInDays(),
+                            time: this.getTimeInMicros(),
+                            oldBalanceOrg: elemento.oldBalanceOrg,
+                            nameDest: elemento.nameDest,
                             step: elemento.step,
+                            newBalanceDest: elemento.newBalanceDest,
+                            nameOrig: elemento.nameOrig,
                             type: elemento.type,
                             amount: elemento.amount,
-                            nameOrig: elemento.nameOrig,
-                            oldBalanceOrg: elemento.oldBalanceOrg,
                             newBalanceOrig: elemento.newBalanceOrig,
-                            nameDest: elemento.nameDest,
-                            oldBalanceDest: elemento.oldBalanceDest,
-                            newBalanceDest: elemento.newBalanceDest
+                            oldBalanceDest: elemento.oldBalanceDest
                         };
     
                         const POST_URL = TRX_API_URL_POST;

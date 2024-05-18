@@ -1,3 +1,57 @@
 Manifest-Version: 1.0
 Main-Class: com.bank.transactions.GcpEmulatorsApplication
+Class-Path: httpclient-4.5.14.jar spring-cloud-gcp-starter-5.0.0.jar goo
+ gle-cloud-firestore-3.15.7.jar reactive-streams-1.0.4.jar jsr305-3.0.2.
+ jar google-api-client-2.2.0.jar jackson-annotations-2.15.3.jar spring-i
+ ntegration-core-6.2.1.jar google-oauth-client-1.34.1.jar proto-google-c
+ loud-firestore-bundle-v1-3.15.7.jar opencensus-proto-0.2.0.jar grpc-goo
+ gle-cloud-storage-v2-2.30.1-alpha.jar spring-boot-starter-json-3.2.2.ja
+ r spring-messaging-6.1.3.jar grpc-netty-shaded-1.59.1.jar spring-expres
+ sion-6.1.3.jar conscrypt-openjdk-uber-2.5.2.jar grpc-core-1.59.1.jar pr
+ oto-google-cloud-storage-v2-2.30.1-alpha.jar guava-32.1.3-jre.jar grpc-
+ util-1.59.1.jar spring-beans-6.1.3.jar micrometer-commons-1.12.2.jar sp
+ ring-webmvc-6.1.3.jar spring-boot-starter-data-mongodb-3.2.2.jar google
+ -cloud-core-2.28.0.jar log4j-api-2.21.1.jar failureaccess-1.0.1.jar gax
+ -httpjson-2.38.0.jar commons-lang3-3.13.0.jar spring-cloud-gcp-core-5.0
+ .0.jar micrometer-observation-1.12.2.jar gapic-google-cloud-storage-v2-
+ 2.30.1-alpha.jar jackson-datatype-jdk8-2.15.3.jar j2objc-annotations-2.
+ 8.jar google-auth-library-oauth2-http-1.20.0.jar spring-boot-3.2.2.jar 
+ grpc-protobuf-lite-1.59.1.jar proto-google-cloud-pubsub-v1-1.107.13.jar
+  spring-boot-starter-web-3.2.2.jar commons-codec-1.16.0.jar grpc-api-1.
+ 59.1.jar logback-core-1.4.14.jar animal-sniffer-annotations-1.23.jar sp
+ ring-aop-6.1.3.jar bson-record-codec-4.11.1.jar mongodb-driver-core-4.1
+ 1.1.jar spring-cloud-gcp-autoconfigure-5.0.0.jar google-http-client-gso
+ n-1.43.3.jar grpc-rls-1.59.1.jar spring-context-6.1.3.jar spring-boot-s
+ tarter-tomcat-3.2.2.jar auto-value-annotations-1.10.4.jar spring-boot-s
+ tarter-logging-3.2.2.jar spring-data-commons-3.2.2.jar spring-cloud-gcp
+ -starter-storage-5.0.0.jar tomcat-embed-el-10.1.18.jar spring-web-6.1.3
+ .jar google-cloud-core-grpc-2.28.0.jar bson-4.11.1.jar opencensus-contr
+ ib-http-util-0.31.1.jar google-cloud-core-http-2.28.0.jar google-cloud-
+ pubsub-1.125.13.jar spring-boot-starter-3.2.2.jar api-common-2.21.0.jar
+  protobuf-java-util-3.25.1.jar opencensus-contrib-grpc-util-0.31.1.jar 
+ grpc-context-1.59.1.jar jackson-module-parameter-names-2.15.3.jar googl
+ e-cloud-storage-2.30.1.jar grpc-google-cloud-firestore-v1-3.15.7.jar re
+ actor-core-3.6.2.jar proto-google-iam-v1-1.24.0.jar grpc-stub-1.59.1.ja
+ r listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar grpc-g
+ oogleapis-1.59.1.jar grpc-grpclb-1.59.1.jar opencensus-api-0.31.1.jar c
+ hecker-qual-3.40.0.jar re2j-1.7.jar grpc-protobuf-1.59.1.jar grpc-inpro
+ cess-1.59.1.jar gax-2.38.0.jar javax.annotation-api-1.3.2.jar google-ht
+ tp-client-apache-v2-1.43.3.jar jackson-databind-2.15.3.jar google-http-
+ client-jackson2-1.43.3.jar spring-cloud-gcp-pubsub-5.0.0.jar grpc-alts-
+ 1.59.1.jar google-auth-library-credentials-1.20.0.jar jul-to-slf4j-2.0.
+ 11.jar threetenbp-1.6.8.jar google-http-client-appengine-1.43.3.jar pro
+ to-google-cloud-firestore-v1-3.15.7.jar spring-tx-6.1.3.jar spring-clou
+ d-gcp-storage-5.0.0.jar annotations-4.1.1.4.jar spring-data-mongodb-4.2
+ .2.jar jakarta.annotation-api-2.1.1.jar jackson-core-2.15.3.jar snakeya
+ ml-2.2.jar spring-jcl-6.1.3.jar slf4j-api-2.0.11.jar google-http-client
+ -1.43.3.jar protobuf-java-3.25.1.jar spring-boot-autoconfigure-3.2.2.ja
+ r mongodb-driver-sync-4.11.1.jar gax-grpc-2.38.0.jar grpc-xds-1.59.1.ja
+ r logback-classic-1.4.14.jar jackson-datatype-jsr310-2.15.3.jar perfmar
+ k-api-0.26.0.jar error_prone_annotations-2.23.0.jar proto-google-common
+ -protos-2.29.0.jar log4j-to-slf4j-2.21.1.jar tomcat-embed-websocket-10.
+ 1.18.jar spring-retry-2.0.5.jar httpcore-4.4.16.jar grpc-services-1.59.
+ 1.jar spring-cloud-gcp-starter-pubsub-5.0.0.jar google-api-services-sto
+ rage-v1-rev20231117-2.0.0.jar spring-core-6.1.3.jar spring-cloud-gcp-st
+ arter-data-firestore-5.0.0.jar spring-cloud-gcp-data-firestore-5.0.0.ja
+ r tomcat-embed-core-10.1.18.jar grpc-auth-1.59.1.jar gson-2.10.1.jar
 
