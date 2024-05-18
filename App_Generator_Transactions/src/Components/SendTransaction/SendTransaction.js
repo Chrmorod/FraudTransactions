@@ -4,6 +4,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Home } from '../Home/Home';
 import './SendTransaction.css';
 import logoTransaction from '../../Images/transaction.svg';
+import { v4 as uuid } from 'uuid';
 
 const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
 
@@ -32,7 +33,33 @@ export class SendTransaction extends React.Component {
       home: false
     };
   }
-
+  getCurrentDateInDays = () => {
+      const today = new Date();
+      const epoch = new Date(1970, 0, 1);
+      const differenceInTime = today.getTime() - epoch.getTime();
+      const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+      return differenceInDays;
+  };
+  getTime = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const milliseconds = now.getMilliseconds();
+    //const currentTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+    const totalMicros = (hours * 60 * 60 * 1000 * 1000) + // Microsec per hour
+    (minutes * 60 * 1000 * 1000) +     // Microsec per min
+    (seconds * 1000 * 1000) +          // Microsec per sec
+    (milliseconds * 1000);             // Microsec per milisec
+    return totalMicros;
+  };
+  generateRandomNumber = () => {
+    const randomNumber = Math.random();
+    const scaledNumber = randomNumber * 743;
+    const roundedNumber = Math.floor(scaledNumber);
+    const finalNumber = roundedNumber + 1;
+    return finalNumber;
+  };
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -47,17 +74,19 @@ export class SendTransaction extends React.Component {
 
     try {
       let postData = {
-          "step": 1,
-          "type": this.state.type,
-          "amount": this.state.amount,
-          "nameOrig": this.state.nameOrig,
-          "oldBalanceOrg": this.state.oldBalanceOrg,
-          "newBalanceOrig": this.state.newBalanceOrig,
+          "ID": uuid(),
+          "date": this.getCurrentDateInDays(),
+          "time": this.getTime(),
+          "oldBalanceOrg": parseFloat(this.state.oldBalanceOrg),
           "nameDest": this.state.nameDest,
-          "oldBalanceDest": this.state.oldBalanceDest,
-          "newBalanceDest": this.state.newBalanceDest
+          "step": this.generateRandomNumber(),
+          "newBalanceDest": parseFloat(this.state.newBalanceDest),
+          "nameOrig": this.state.nameOrig,
+          "type": this.state.type,
+          "amount": parseFloat(this.state.amount),
+          "newBalanceOrig": parseFloat(this.state.newBalanceOrig),
+          "oldBalanceDest": parseFloat(this.state.oldBalanceDest)
         };
-
       const POST_URL = TRX_API_URL_POST;
       const postResponse = await fetch(POST_URL, {
         method: 'POST',
@@ -94,7 +123,6 @@ export class SendTransaction extends React.Component {
                 <table>
                   <thead>
                     <tr>
-                      <th>Step</th>
                       <th>NameOrig</th>
                       <th>OldBalanceOrig</th>
                       <th>NewBalanceOrig</th>
@@ -107,7 +135,6 @@ export class SendTransaction extends React.Component {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
                       <td><input type="text" name="nameOrig" autoFocus required value={this.state.nameOrig} onChange={this.handleChange} /></td>
                       <td><input type="number" step="any" name="oldBalanceOrg" autoFocus required value={this.state.oldBalanceOrg} onChange={this.handleChange} /></td>
                       <td><input type="number" step="any" name="newBalanceOrig" autoFocus required value={this.state.newBalanceOrig} onChange={this.handleChange} /></td>

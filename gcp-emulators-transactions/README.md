@@ -1,8 +1,55 @@
-# Getting Started
-This project is a simple demo to test Spring integration with some GCP services emulated using Firebase Local Emulator Suite.
+# Introduction
+Welcome to the Online Payments Simulator API documentation!
 
+This API is designed to facilitate the simulation of online payments in real-time.
+
+It provides endpoints to retrieve transactions from a MongoDB database and publish them to a Pub/Sub system using /online-payments, 
+as well as to insert transactions into Firestore using /transactions.
 ## Prerequisites
-You must install [Firebase Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/install_and_configure).
+You must install [Google Cli](https://cloud.google.com/sdk/docs/install).
+
+## Enpoints
+### Retrieve Online Payments
+#### Endpoint: /online-payments
+
+Method: GET
+
+Description: Retrieves online payment transactions from a MongoDB database.
+
+Parameters: None
+
+Response:
+
+Success: Returns a JSON object containing the retrieved transactions.
+Error: Returns an error message if the retrieval fails.
+Publish Transaction
+#### Endpoint: /publish-transaction
+
+Method: POST
+
+Description: Publishes a transaction to a Pub/Sub system.
+
+Parameters:
+
+Transaction data (JSON format)
+Response:
+
+Success: Returns a confirmation message upon successful publishing.
+Error: Returns an error message if the publishing fails.
+Insert Transaction
+#### Endpoint: /transactions
+
+Method: POST
+
+Description: Inserts a transaction into Firestore.
+
+Parameters:
+
+Transaction data (JSON format)
+Response:
+
+Success: Returns a confirmation message upon successful insertion.
+Error: Returns an error message if the insertion fails.
 
 ## Reference Documentation
 For further reference, please consider the following sections:
@@ -13,13 +60,4 @@ For further reference, please consider the following sections:
 * [GCP Support](https://googlecloudplatform.github.io/spring-cloud-gcp/reference/html/index.html)
 * [GCP Storage](https://googlecloudplatform.github.io/spring-cloud-gcp/reference/html/index.html#cloud-storage)
 * [GCP Messaging](https://googlecloudplatform.github.io/spring-cloud-gcp/reference/html/index.html#cloud-pubsub)
-
-## Guides
-The following guides illustrate how to use some features concretely:
-
-* [GCP Samples](https://github.com/GoogleCloudPlatform/spring-cloud-gcp/tree/main/spring-cloud-gcp-samples)
-* [GCP Storage](https://github.com/GoogleCloudPlatform/spring-cloud-gcp/tree/main/spring-cloud-gcp-samples/spring-cloud-gcp-storage-resource-sample)
-* [GCP Pub/Sub Sample](https://github.com/GoogleCloudPlatform/spring-cloud-gcp/tree/main/spring-cloud-gcp-samples/spring-cloud-gcp-pubsub-sample)
-
-## Additional notes
-Code is formatted using [google-java-format](https://plugins.jetbrains.com/plugin/8527-google-java-format).
+* [Medium - Claudio Rauso](https://medium.com/@claudiorauso/local-testing-spring-gcp-firestore-57f2ffc49c1e)

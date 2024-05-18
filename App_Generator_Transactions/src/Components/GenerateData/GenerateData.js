@@ -25,8 +25,8 @@ export class GenerateData extends React.Component {
             home: false,
             isPlayStop: true,
             activeButton: null,
-            currentPage: 15, // Página actual de datos
-            totalPages: null, // Número total de páginas
+            currentPage: 15, // Pages data
+            totalPages: null, // Total number pages
             controller: new AbortController(),
         };
     }
@@ -38,14 +38,19 @@ export class GenerateData extends React.Component {
         const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
         return differenceInDays;
     };
-    getTimeInMicros = () => {
+    getTime = () => {
         const now = new Date();
-        const midnight = new Date(now);
-        midnight.setHours(0, 0, 0, 0); // Establece la hora a medianoche
-        const millisSinceMidnight = now - midnight; // Diferencia en milisegundos
-        const microsSinceMidnight = millisSinceMidnight * 1000; // Convertir a microsegundos
-        return microsSinceMidnight;
-      }
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const milliseconds = now.getMilliseconds();
+        //const currentTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+        const totalMicros = (hours * 60 * 60 * 1000 * 1000) + // Microsec per hour
+        (minutes * 60 * 1000 * 1000) +     // Microsec per min
+        (seconds * 1000 * 1000) +          // Microsec per sec
+        (milliseconds * 1000);             // Microsec per milisec
+        return totalMicros;
+    };
 
     setGenerate = (generate) => {
         this.setState({ generate: generate });
@@ -53,7 +58,7 @@ export class GenerateData extends React.Component {
 
     playOrStop = async () => {
         const { isPlayStop, currentPage, controller } = this.state;
-        this.setState({ isPlayStop: !isPlayStop }); // Cambiamos el estado de isPlayStop
+        this.setState({ isPlayStop: !isPlayStop }); // Changes state button isPlayStop
         const signal = controller.signal;
 
         if (isPlayStop) {
@@ -72,7 +77,7 @@ export class GenerateData extends React.Component {
                     console.log('Datos extraidos exitosamente', responseData.length);
 
                     if (responseData.length > 0) {
-                        await this.processData(responseData); // Procesamos los datos si hay respuesta
+                        await this.processData(responseData); // Procedure data if response
                     } else {
                         console.error('La respuesta de la solicitud GET no contiene datos.');
                     }
@@ -85,7 +90,7 @@ export class GenerateData extends React.Component {
         } else {
             console.log('Detención de la petición GET y POST');
             if (controller.signal.aborted) {
-                controller.abort(); // Abortamos tanto la solicitud GET como la POST si se presiona el botón de nuevo
+                controller.abort(); // Abort request GET and POST if touch button
             }
         }
     };
@@ -94,13 +99,13 @@ export class GenerateData extends React.Component {
         try {
             if (Array.isArray(responseData)) {
                 for (let i = 0; i < responseData.length; i++) {
-                    if (this.state.isPlayStop) return; // Verificamos si se debe detener el proceso
+                    if (this.state.isPlayStop) return; // Verify stop procedure
                     const elemento = responseData[i];
                     try {
                         const postData = {
                             ID : elemento.id,
                             date: this.getCurrentDateInDays(),
-                            time: this.getTimeInMicros(),
+                            time: this.getTime(),
                             oldBalanceOrg: elemento.oldBalanceOrg,
                             nameDest: elemento.nameDest,
                             step: elemento.step,

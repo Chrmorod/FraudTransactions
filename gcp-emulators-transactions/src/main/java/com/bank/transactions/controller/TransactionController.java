@@ -38,7 +38,7 @@ public class TransactionController {
   public TransactionController(TransactionService trxsService) {
     this.trxsService = trxsService;
   }
-  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Permitimos solicitudes desde http://localhost:3000
+  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Allow request from http://localhost:3000
   @PostMapping //Insert Data Firestore
   @ResponseStatus(HttpStatus.CREATED)
   public Transaction create(@RequestBody Transaction trx) {
@@ -53,7 +53,7 @@ public class TransactionController {
   public List<Transaction> getAllTransactions() {
     return trxsService.getAllTransactions();
   }
-  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Permitimos solicitudes desde http://localhost:3000
+  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Allow request from http://localhost:3000
   @GetMapping("/online-payments")
   public List<Transaction> getAllMongoDBTransactions() {
     return trxsService.getAllMongoDBTransactions();
@@ -68,7 +68,7 @@ public class TransactionController {
   @Value("${pubsub.subscription-id}")
   private String subscriptionId;
 
-  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Permitimos solicitudes desde http://localhost:3000
+  @CrossOrigin(origins = "${CORS_ORIGIN_URL}") // Allow request from http://localhost:3000
   @RequestMapping("/publish-transaction") //Insert data Transaction Topic Pubsub
   public ResponseEntity<String> publishMessage(@RequestBody String sampleJsonMessage)
           throws InterruptedException, IOException, ExecutionException {
