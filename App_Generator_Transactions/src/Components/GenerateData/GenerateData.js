@@ -5,6 +5,7 @@ import { faPlay, faStop, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 import './GenerateData.css';
 import logoTransaction from '../../Images/transaction.svg';
 import AbortController from "abort-controller"
+import moment from 'moment-timezone';
 
 const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
 
@@ -38,18 +39,16 @@ export class GenerateData extends React.Component {
         const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
         return differenceInDays;
     };
-    getTime = () => {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-        const milliseconds = now.getMilliseconds();
-        //const currentTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
-        const totalMicros = (hours * 60 * 60 * 1000 * 1000) + // Microsec per hour
-        (minutes * 60 * 1000 * 1000) +     // Microsec per min
-        (seconds * 1000 * 1000) +          // Microsec per sec
-        (milliseconds * 1000);             // Microsec per milisec
-        return totalMicros;
+    getCurrentTime = () => {
+        //const now = moment.tz('Europe/Madrid').format('HH:mm:ss.SSS000');// Spain hour
+        const now = moment.tz('Europe/Madrid').add(1, 'hours');
+        const hours = now.hours()+1;
+        const minutes = now.minutes();
+        const seconds = now.seconds();
+        const milliseconds = now.milliseconds();
+        const microseconds = (hours * 3600 * 1e6) + (minutes * 60 * 1e6) + (seconds * 1e6) + (milliseconds * 1e3);
+        return microseconds;
+
     };
 
     setGenerate = (generate) => {
@@ -105,7 +104,7 @@ export class GenerateData extends React.Component {
                         const postData = {
                             ID : elemento.id,
                             date: this.getCurrentDateInDays(),
-                            time: this.getTime(),
+                            time: this.getCurrentTime(),
                             oldBalanceOrg: elemento.oldBalanceOrg,
                             nameDest: elemento.nameDest,
                             step: elemento.step,
@@ -116,7 +115,7 @@ export class GenerateData extends React.Component {
                             newBalanceOrig: elemento.newBalanceOrig,
                             oldBalanceDest: elemento.oldBalanceDest
                         };
-    
+                        //
                         const POST_URL = TRX_API_URL_POST;
                         const postResponse = await fetch(POST_URL, {
                             method: 'POST',
