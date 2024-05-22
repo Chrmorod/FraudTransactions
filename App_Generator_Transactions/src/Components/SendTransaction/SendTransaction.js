@@ -34,23 +34,6 @@ export class SendTransaction extends React.Component {
       home: false
     };
   }
-  getCurrentDateInDays = () => {
-      const today = new Date();
-      const epoch = new Date(1970, 0, 1);
-      const differenceInTime = today.getTime() - epoch.getTime();
-      const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
-      return differenceInDays;
-  };
-  getCurrentTime = () => {
-     //const now = moment.tz('Europe/Madrid').format('HH:mm:ss.SSS000');// Spain hour
-     const now = moment.tz('Europe/Madrid').add(1, 'hours');
-     const hours = now.hours()+1;
-     const minutes = now.minutes();
-     const seconds = now.seconds();
-     const milliseconds = now.milliseconds();
-     const microseconds = (hours * 3600 * 1e6) + (minutes * 60 * 1e6) + (seconds * 1e6) + (milliseconds * 1e3);
-     return microseconds;
-  };
   generateRandomNumber = () => {
     const randomNumber = Math.random();
     const scaledNumber = randomNumber * 743;
@@ -72,18 +55,16 @@ export class SendTransaction extends React.Component {
 
     try {
       let postData = {
-          "ID": uuid(),
-          "date": this.getCurrentDateInDays(),
-          "time": this.getCurrentTime(),
-          "oldBalanceOrg": parseFloat(this.state.oldBalanceOrg),
-          "nameDest": this.state.nameDest,
+          "id": uuid(),
           "step": this.generateRandomNumber(),
-          "newBalanceDest": parseFloat(this.state.newBalanceDest),
-          "nameOrig": this.state.nameOrig,
           "type": this.state.type,
           "amount": parseFloat(this.state.amount),
+          "nameOrig": this.state.nameOrig,
+          "nameDest": this.state.nameDest,
+          "oldBalanceOrg": parseFloat(this.state.oldBalanceOrg),
           "newBalanceOrig": parseFloat(this.state.newBalanceOrig),
-          "oldBalanceDest": parseFloat(this.state.oldBalanceDest)
+          "oldBalanceDest": parseFloat(this.state.oldBalanceDest),
+          "newBalanceDest": parseFloat(this.state.newBalanceDest)
         };
       const POST_URL = TRX_API_URL_POST;
       const postResponse = await fetch(POST_URL, {

@@ -3,67 +3,44 @@
   "name": "Transaction",
   "fields": [
     {
-      "name": "ID",
+      "name": "id",
       "type": "string"
     },
     {
-      "name": "date",
-      "type": {
-        "type": "int",
-        "logicalType": "date"
-      }
-    },
-    {
-      "name": "time",
-      "type": {
-        "type": "long",
-        "logicalType": "time-micros"
-      }
-    },
-    {
-      "name": "oldBalanceOrg",
-      "type": "float",
-      "default": null
-    },
-    {
-      "name": "nameDest",
-      "type": "string",
-      "default": null
-    },
-    {
       "name": "step",
-      "type": "int",
-      "default": null
-    },
-    {
-      "name": "newBalanceDest",
-      "type": "float",
-      "default": null
-    },
-    {
-      "name": "nameOrig",
-      "type": "string",
-      "default": null
+      "type": "int"
     },
     {
       "name": "type",
-      "type": "string",
-      "default": null
+      "type": "string"
     },
     {
       "name": "amount",
-      "type": "float",
-      "default": null
+      "type": "float"
+    },
+    {
+      "name": "nameOrig",
+      "type": "string"
+    },
+    {
+      "name": "nameDest",
+      "type": "string"
+    },
+    {
+      "name": "oldBalanceOrg",
+      "type": "float"
     },
     {
       "name": "newBalanceOrig",
-      "type": "float",
-      "default": null
+      "type": "float"
     },
     {
       "name": "oldBalanceDest",
-      "type": "float",
-      "default": null
+      "type": "float"
+    },
+    {
+      "name": "newBalanceDest",
+      "type": "float"
     }
   ]
 }

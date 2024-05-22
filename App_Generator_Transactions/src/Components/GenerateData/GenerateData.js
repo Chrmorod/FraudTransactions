@@ -29,28 +29,9 @@ export class GenerateData extends React.Component {
             currentPage: 15, // Pages data
             totalPages: null, // Total number pages
             controller: new AbortController(),
+            counter: 0
         };
     }
-
-    getCurrentDateInDays = () => {
-        const today = new Date();
-        const epoch = new Date(1970, 0, 1);
-        const differenceInTime = today.getTime() - epoch.getTime();
-        const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
-        return differenceInDays;
-    };
-    getCurrentTime = () => {
-        //const now = moment.tz('Europe/Madrid').format('HH:mm:ss.SSS000');// Spain hour
-        const now = moment.tz('Europe/Madrid').add(1, 'hours');
-        const hours = now.hours()+1;
-        const minutes = now.minutes();
-        const seconds = now.seconds();
-        const milliseconds = now.milliseconds();
-        const microseconds = (hours * 3600 * 1e6) + (minutes * 60 * 1e6) + (seconds * 1e6) + (milliseconds * 1e3);
-        return microseconds;
-
-    };
-
     setGenerate = (generate) => {
         this.setState({ generate: generate });
     };
@@ -88,6 +69,9 @@ export class GenerateData extends React.Component {
             }
         } else {
             console.log('Detención de la petición GET y POST');
+            console.log('Contador:', this.state.counter);
+            const counter = 0;
+            this.setState({ counter });
             if (controller.signal.aborted) {
                 controller.abort(); // Abort request GET and POST if touch button
             }
@@ -102,20 +86,20 @@ export class GenerateData extends React.Component {
                     const elemento = responseData[i];
                     try {
                         const postData = {
-                            ID : elemento.id,
-                            date: this.getCurrentDateInDays(),
-                            time: this.getCurrentTime(),
-                            oldBalanceOrg: elemento.oldBalanceOrg,
-                            nameDest: elemento.nameDest,
+                            id : elemento.id,
                             step: elemento.step,
-                            newBalanceDest: elemento.newBalanceDest,
-                            nameOrig: elemento.nameOrig,
                             type: elemento.type,
                             amount: elemento.amount,
+                            nameOrig: elemento.nameOrig,
+                            nameDest: elemento.nameDest,
+                            oldBalanceOrg: elemento.oldBalanceOrg,
                             newBalanceOrig: elemento.newBalanceOrig,
-                            oldBalanceDest: elemento.oldBalanceDest
+                            oldBalanceDest: elemento.oldBalanceDest,
+                            newBalanceDest: elemento.newBalanceDest
                         };
                         //
+                        const counter = this.state.counter + 1;
+                        this.setState({ counter });
                         const POST_URL = TRX_API_URL_POST;
                         const postResponse = await fetch(POST_URL, {
                             method: 'POST',
