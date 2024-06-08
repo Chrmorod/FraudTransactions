@@ -3,6 +3,7 @@ import { Home } from '../Home/Home';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import logoTransaction from '../../Images/transaction.svg';
+import './ShowDashBoard.css';
 class HomeView extends React.Component {
   render() {
     return (
@@ -34,7 +35,7 @@ export class ShowDashBoard extends React.Component {
               <h1>Dashboard</h1>
             </div>
             <button className="btn-back" onClick={this.setGoBack}><FontAwesomeIcon icon={faChevronLeft} /></button>
-            <iframe width="1480" height="900" src="https://lookerstudio.google.com/embed/reporting/efa63733-7c80-454d-92f4-850bba4b8a21/page/Gq6tD" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            <iframe className="dashboard" src="https://lookerstudio.google.com/embed/reporting/efa63733-7c80-454d-92f4-850bba4b8a21/page/Gq6tD" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
           </>
         )}
       </>

@@ -5,7 +5,6 @@ import { Home } from '../Home/Home';
 import './SendTransaction.css';
 import logoTransaction from '../../Images/transaction.svg';
 import { v4 as uuid } from 'uuid';
-import moment from 'moment-timezone';
 
 const TRX_API_URL_POST = process.env.REACT_APP_API_URL;
 
