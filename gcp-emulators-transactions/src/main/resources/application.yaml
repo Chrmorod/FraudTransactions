@@ -2,19 +2,19 @@
 server:
   servlet:
     context-path: /bank
-  port: 8090
+  port: 8080
 # spring && mongodb properties
 spring:
   cloud:
     gcp:
       project-id: detector-transactions-project
+      #credentials:
+        #location: ${credentials.user} # # Path to your service account key file from environment variable file:///C:/
       firestore:
         emulator:
           enabled: ${MODE_EMULATOR} #if true --activate emulator ${mode.emulator}
         host-port: ${host.port.firestore} #localhost:9080
         project-id: ${project.id.gcloud} #detector-transactions-project
-        credentials:
-          location: ${credentials.user} # # Path to your service account key file from environment variable file:///C:/
   data:
     mongodb:
       uri: ${spring.data.mongodb.uri}

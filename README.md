@@ -6,25 +6,25 @@
 ## API Reference
 
 #### Get all transactions from mongodb
-```https://api-transactions-goo2izby2q-ew.a.run.app/bank/transactions/mongodb
-  GET /bank/transactions/mongodb
+```https://transactlaunch-api-goo2izby2q-ew.a.run.app/bank/transactions/online-payments
+  GET /bank/transactions/online-payments
 ```
 
 | Parameter     |   Type   | Description                |
 | :--------     | :------- | :------------------------- |
 | `transaction` | `object` | `{ "id": "66047a934474d286e0bed239" "step": 278,"type": "CASH_IN","amount": 355919.4,"nameOrig": "C1991608184","nameDest": "C465944656","oldBalanceOrg": 72466.0 "oldBalanceDest": 7759.33,"newBalanceDest": 0.0}` |
 
-#### Post all transactions (Firestore format)
+#### Post all transactions (Pub/Sub format)
 
-``` https://api-transactions-goo2izby2q-ew.a.run.app/bank/transactions
-  POST /bank/transactions
+``` https://transactlaunch-api-goo2izby2q-ew.a.run.app/bank/transactions/publish-transaction
+  POST /bank/transactions/publish-transaction
 ```
 
 | Parameter     | Type     | Description                       |
 | :--------     | :------- | :-------------------------------- |
 | `transaction` | `object` | **6NzgrIGX7sbB8tYdHLrk** `amount: 13439.14 nameDest: "M1498613611" nameOrig: "C243675757" newBalanceDest: 0 newBalanceOrig: 0 oldBalanceDest: 0 oldBalanceOrg: 0 step: 34 type: "PAYMENT"` |
 
-Url React app: https://app-launch-transactions-goo2izby2q-ew.a.run.app/
+Url React app: https://transactlaunch-app-goo2izby2q-ew.a.run.app
 
 
 ## Deployment
@@ -40,7 +40,7 @@ Insert gif or link to demo
 
 ## Architecture
 
-![Architecture](https://github.com/Chrmorod/FraudTransactions/blob/main/images/architecture_transactlaunch.svg)
+![Architecture](https://github.com/Chrmorod/FraudTransactions/blob/main/images/transactLaunch-architecture.png)
 
 ## Screenshots
 
@@ -57,11 +57,11 @@ function App() {
 ```
 ## Tech Stack
 
-**Client:** React JS, Spring Boot, TailwindCSS
+**Client:** React JS, Spring Boot
 
-**Server:** Node, Tomcat
+**Server:** Node
 
-**Databases** Mongodb, Firestore
+**Databases** Mongodb,  BigQuery
 
 ## Acknowledgements
 
