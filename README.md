@@ -24,9 +24,6 @@
 | :--------     | :------- | :-------------------------------- |
 | `transaction` | `object` | **6NzgrIGX7sbB8tYdHLrk** `amount: 13439.14 nameDest: "M1498613611" nameOrig: "C243675757" newBalanceDest: 0 newBalanceOrig: 0 oldBalanceDest: 0 oldBalanceOrg: 0 step: 34 type: "PAYMENT"` |
 
-Url React app: https://transactlaunch-app-goo2izby2q-ew.a.run.app
-
-
 ## Deployment
 
 To deploy the local react project run
@@ -36,7 +33,7 @@ To deploy the local react project run
 ```
 ## Demo project 
 
-Insert gif or link to demo
+[TransactLaunch Project](https://transactlaunch-app-goo2izby2q-ew.a.run.app)
 
 ## Architecture
 
