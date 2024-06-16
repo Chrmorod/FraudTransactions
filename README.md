@@ -170,10 +170,11 @@ def log_error(event, error):
 **Databases** Mongodb,  BigQuery
 
 ## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ - [Claudio Rauso - Firestore](https://medium.com/@claudiorauso/local-testing-spring-gcp-firestore-57f2ffc49c1e)
+ - [Claudio Rauso -Pub/Sub](https://medium.com/@claudiorauso/local-testing-spring-gcp-pub-sub-e2028b69d8e5)
+ - [Spring Boot](https://start.spring.io/)
+ - [React JS](https://react.dev/)
+ - [Eraser - Diagrams](https://app.eraser.io/)
 
 ## Documentation
 
