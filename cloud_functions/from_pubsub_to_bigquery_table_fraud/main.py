@@ -14,7 +14,7 @@ def pubsub_to_bigquery(event, context):
         # Decode msg Pub/Sub
         pubsub_message = base64.b64decode(event['data']).decode('utf-8')
         data = json.loads(pubsub_message)
-        print(pubsub_message)
+        #Insert data in table fraud_data_validate
         ID = data.get('id')
         oldBalanceOrg = data.get('oldBalanceOrg')
         nameDest = data.get('nameDest')
@@ -30,15 +30,15 @@ def pubsub_to_bigquery(event, context):
         current_time = "TIME(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), SECOND))"
         
         query_validate = f"""
-        INSERT INTO `{PROJECT_ID}.{BQ_DATASET}.fraud_validate`(ID, date, time, nameOrig, oldBalanceOrg, newBalanceOrig, nameDest, oldBalanceDest, newBalanceDest, type, amount, step)
+        INSERT INTO `{PROJECT_ID}.{BQ_DATASET}.fraud_data_validate`(ID, date, time, nameOrig, oldBalanceOrg, newBalanceOrig, nameDest, oldBalanceDest, newBalanceDest, type, amount, step)
         VALUES (
             '{ID}', {current_date}, {current_time}, '{nameOrig}', {oldBalanceOrg}, {newBalanceOrig}, '{nameDest}', {oldBalanceDest}, {newBalanceDest}, '{type}', {amount}, {step}
         )
         """
         query_job = BQ.query(query_validate)
         query_job.result()
-        print(f"Processed transaction ID: {ID} in table fraud_validate at date: {current_date}")
-
+        print(f"Processed transaction ID: {ID} in table fraud_data_validate at date: {current_date}")
+        #Insert data in table fraud_results
         query_results = f"""
         INSERT INTO `{PROJECT_ID}.{BQ_DATASET}.fraud_results`(ID, date, time, isFraud)
         SELECT '{ID}' as ID, {current_date} as date, {current_time} as time, p.label as isFraud
@@ -65,8 +65,9 @@ def pubsub_to_bigquery(event, context):
         query_job.result()
         print(f"Processed transaction ID: {ID} in table fraud_results at date: {current_date}")
 
-    #except KeyError as e:
-    #    print(f"KeyError: {e}. Event received: {event}")
+    except KeyError as e:
+        print(f"KeyError: {e}. Event received: {event}")
     except Exception as e:
         print(f"An error occurred: {traceback.format_exc()}")
+
 
