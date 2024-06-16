@@ -14,7 +14,8 @@ def pubsub_to_bigquery(event, context):
         # Decode msg Pub/Sub
         pubsub_message = base64.b64decode(event['data']).decode('utf-8')
         data = json.loads(pubsub_message)
-        #Insert data in table fraud_data_validate
+        
+        # Extract data
         ID = data.get('id')
         oldBalanceOrg = data.get('oldBalanceOrg')
         nameDest = data.get('nameDest')
@@ -29,6 +30,7 @@ def pubsub_to_bigquery(event, context):
         current_date = "DATE(CURRENT_DATETIME())"
         current_time = "TIME(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), SECOND))"
         
+        # Insert data into fraud_data_validate
         query_validate = f"""
         INSERT INTO `{PROJECT_ID}.{BQ_DATASET}.fraud_data_validate`(ID, date, time, nameOrig, oldBalanceOrg, newBalanceOrig, nameDest, oldBalanceDest, newBalanceDest, type, amount, step)
         VALUES (
@@ -38,7 +40,8 @@ def pubsub_to_bigquery(event, context):
         query_job = BQ.query(query_validate)
         query_job.result()
         print(f"Processed transaction ID: {ID} in table fraud_data_validate at date: {current_date}")
-        #Insert data in table fraud_results
+        
+        # Insert data into fraud_results
         query_results = f"""
         INSERT INTO `{PROJECT_ID}.{BQ_DATASET}.fraud_results`(ID, date, time, isFraud)
         SELECT '{ID}' as ID, {current_date} as date, {current_time} as time, p.label as isFraud
@@ -67,7 +70,46 @@ def pubsub_to_bigquery(event, context):
 
     except KeyError as e:
         print(f"KeyError: {e}. Event received: {event}")
+        log_error(event, e)
     except Exception as e:
         print(f"An error occurred: {traceback.format_exc()}")
+        log_error(event, e)
+        # Rollback logic: remove the inserted record from fraud_data_validate if the insertion to fraud_results failed
+        if 'ID' in locals():
+            rollback_query_validate = f"""
+            DELETE FROM `{PROJECT_ID}.{BQ_DATASET}.fraud_data_validate`
+            WHERE ID = '{ID}'
+            """
+            rollback_query_results = f"""
+            DELETE FROM `{PROJECT_ID}.{BQ_DATASET}.fraud_results`
+            WHERE ID = '{ID}'
+            """
+            try:
+                BQ.query(rollback_query_validate).result()
+                BQ.query(rollback_query_results).result()
+                print(f"Rolled back transaction ID: {ID} from both tables due to an error")
+            except Exception as rollback_error:
+                print(f"Rollback failed: {rollback_error}")
 
+def log_error(event, error):
+    try:
+        error_data = {
+            "event": event,
+            "error_message": str(error),
+            "traceback": traceback.format_exc()
+        }
+        error_json = json.dumps(error_data)
+        current_date = "DATE(CURRENT_DATETIME())"
+        current_time = "TIME(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), SECOND))"
+        query_error_log = f"""
+        INSERT INTO `{PROJECT_ID}.{BQ_DATASET}.fraud_data_errors`(event, error_message, traceback, date, time)
+        VALUES (
+            '{error_json}', '{str(error)}', '{traceback.format_exc()}', {current_date}, {current_time}
+        )
+        """
+        BQ.query(query_error_log).result()
+        print(f"Logged error for event: {event}")
+
+    except Exception as log_error:
+        print(f"Failed to log error: {log_error}")
 
